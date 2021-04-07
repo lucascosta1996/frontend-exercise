@@ -1,0 +1,69 @@
+{
+  "general": {
+    "insertionsCount": 643  
+  },
+  "charts": {
+    "general": {
+      "followersCount": 9401
+    },
+    "ratingsByCategory": {
+      "followersCount": 3900
+    }
+  },
+  "terms": [
+    85.08,
+    1.76,
+    33.42,
+    75.11
+  ],
+  "supportRequests": [
+    {
+      "name": "Cecilia Welch",
+      "email": "heather_keeling@gottlieb.ca",
+      "timestamp": "2012-04-23T01:06:43.511Z",
+      "phoneNumber": "215-293-5846",
+      "city": "Southe Mariane",
+      "status": "send"
+    },
+    {
+      "name": "Sara Glover",
+      "email": "floyd_brakus@lindgren.com",
+      "timestamp": "2012-04-23T00:22:43.511Z",
+      "phoneNumber": "057-812-3947",
+      "city": "East Maryam",
+      "status": "send"
+    },
+    {
+      "name": "Harriett Morgan",
+      "email": "jabari.kilback@nelson.tv",
+      "timestamp": "2012-04-23T12:22:43.511Z",
+      "phoneNumber": "866-668-0327",
+      "city": "Monserratmouth",
+      "status": "send"
+    },
+    {
+      "name": "Susie Curry",
+      "email": "theo_gleichner@kaia.org",
+      "timestamp": "2012-04-23T07:56:43.511Z",
+      "phoneNumber": "647-851-5280",
+      "city": "Lonnyburgh",
+      "status": "send"
+    },
+    {
+      "name": "Edgar Greer",
+      "email": "ankunding_ralph@gmail.com",
+      "timestamp": "2012-04-23T08:35:43.511Z",
+      "phoneNumber": "985-747-0063",
+      "city": "Schmittfurt",
+      "status": "unsend"
+    },
+    {
+      "name": "Minerva Massey",
+      "email": "lia_purdy@yahoo.com",
+      "timestamp": "2012-04-23T03:24:43.511Z",
+      "phoneNumber": "488-514-5012",
+      "city": "South Lori",
+      "status": "unsend"
+    }
+  ]
+}
