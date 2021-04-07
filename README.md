@@ -1,70 +1,42 @@
-# Getting Started with Create React App
+# UP9 Frontend Developer Exercise
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### Engineering assumptions
 
-## Available Scripts
+There's a lot more to do on the UI components that were built in this exercise. The main goal in this 3-hour exercise was to build the UI components according to the page design, to make them responsive, and to create the functionalities asked.
 
-In the project directory, you can run:
+### Solution thought process
 
-### `yarn start`
+Each component has its single responsibility, so this way is easier to scale the app in the future. I used  *React.js* for creating the UI components, *styled-components* for creating the UI components' style, and *miragejs* for handling the data.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### What you would do differently in a production environment
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+I would use the *flux* architecture for handling global data, would document all the UI components in the *storybook*, would create a REST API to use as a middleware for handling data that comes from a database, and would write unit tests for every single component and functionality.
 
-### `yarn test`
+### Parts not handled/not handled optimally on purpose and why
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Performance features(not handled optimally), unit testing (not handled), and REST API (not handled optimally), because the goal was to complete the main functionalities and design.
 
-### `yarn build`
+## Installation instructions
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+First, make sure you have the latest version of Node.js up and running. 
+If you don't, please follow the instructions on the official website: https://nodejs.org/en/
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+As soon as you have Node.js installed, open a terminal and move to the folder you have this project stored:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```
+cd up9fe-test
+```
+Then you should be able to install the project dependencies by typing the following:
 
-### `yarn eject`
+```
+npm install
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Wait a few moments, when the installation is complete, you should be able to start the project by typing:
+```
+npm start
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+When the project is up and running, it should be running in the url *localhost:/3000*. You can check by typing it in your web browser.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Lucas Alves Costa - 4/2/2021
