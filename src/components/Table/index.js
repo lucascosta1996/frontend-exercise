@@ -1,47 +1,26 @@
 import React, { memo } from 'react';
-import { func } from 'prop-types';
-import { capitalize, getDateTime } from '../../helpers';
-import { post } from '../../mockAPI/postRequest';
-import { patch } from '../../mockAPI/patchRequest';
-import useGetRequests from '../../hooks/useGetRequests';
+import { array, func, string } from 'prop-types';
+import { capitalize, getDateTime, isDate } from '../../helpers';
 import TableWrapper from './styledComponents';
 import Button from '../Button';
 
-function Table({ onChange }) {
-  const { fetchData, data } = useGetRequests('/api/requests');
-
-  async function handleClick() {
-    const randomData = {
-      city: 'Southe Mariane',
-      email: "test_mail@gottlieb.ca",
-      name: `Cecilia Welch`,
-      phoneNumber: "215-293-5846",
-      status: "send",
-      timestamp: "2012-04-23T01:06:43.511Z",
-    };
-
-    await post('/api/requests', randomData)
-      .then(() => fetchData());
-
-    onChange();
-  }
-
-  async function handleButtonClick(item) {
-    item.status = item.status === 'send' ? 'unsend' : 'send';
-    patch('/api/requests', item)
-      .then(() => fetchData());
-  }
-
+function Table({
+  data,
+  header,
+  handleButtonClick,
+  handleAddClick,
+  tableTitle
+}) {
   return (
     <TableWrapper>
       <header
         className="support-requests-header"
       >
         <h2>
-          Support Requests
+          {tableTitle}
         </h2>
         <span
-          onClick={() => handleClick()}
+          onClick={() => handleAddClick()}
         >
           ADD
         </span>
@@ -49,42 +28,58 @@ function Table({ onChange }) {
       <table>
         <tbody>
           <tr className="table-header">
-            <th>NAME</th>
-            <th>EMAIL</th>
-            <th>TIME</th>
-            <th>PHONE NUMBER</th>
-            <th>CITY</th>
-            <th>STATUS</th>
+            {header.map(item => <th key={item}>{item}</th>)}
           </tr>
           {
-            data && data.requests
+            data && data
               .sort((a, b) => parseInt(b.id) - parseInt(a.id))
               .map(row => (
                 <tr
                   className="table-row"
-                  key={row.name}
+                  key={row.id}
                 >
-                  <td
-                    className="td-name"
-                  >
-                    {row.name}
-                  </td>
-                  <td>{row.email}</td>
-                  <td>{getDateTime(row.timestamp)}</td>
-                  <td>{row.phoneNumber}</td>
-                  <td>{row.city}</td>
-                  <td
-                    className="button-table"
-                  >
-                    <Button
-                      label={capitalize(row.status)}
-                      normal={row.status === 'unsend'}
-                      transparent={row.status === 'send'}
-                      onClick={() => handleButtonClick(row)}
-                    />
-                  </td>
+                  {Object.entries(row).map((key) => {
+                    const className = `td-${key[0]}`;
+
+                    if (key[0] === 'id') return;
+
+                    if (isDate(key[1])) {
+                      return (
+                        <td
+                          key={key[1]}
+                          className={className}
+                        >
+                          {getDateTime(key[1])}
+                        </td>
+                      );
+                    } else if (key[0] === 'status') {
+                      return (
+                        <td
+                          className="button-table"
+                          key={key[1]}
+                        >
+                          <Button
+                            label={capitalize(key[1])}
+                            normal={key[1] === 'unsend'}
+                            transparent={key[1] === 'send'}
+                            onClick={() => handleButtonClick(row)}
+                          />
+                        </td>
+                      );
+                    } else {
+                      return (
+                        <td
+                          className={className}
+                          key={key[1]}
+                        >
+                          {key[1]}
+                        </td>
+                      );
+                    }
+                })}
                 </tr>
-              ))
+              )
+              )
           }
         </tbody>
       </table>
@@ -93,11 +88,19 @@ function Table({ onChange }) {
 }
 
 Table.propTypes = {
-  onChange: func,
+  data: array,
+  header: array,
+  tableTitle: string,
+  handleButtonClick: func,
+  handleAddClick: func,
 };
 
-Table.propTypes = {
-  onChange: () => {},
+Table.defaultProps = {
+  data: [],
+  header: [],
+  tableTitle: '',
+  handleButtonClick: () => {},
+  handleAddClick: () => {},
 };
 
 export default memo(Table);
