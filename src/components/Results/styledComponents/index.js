@@ -5,12 +5,20 @@ const ResultsWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  min-height: 187px;
   padding: 24px;
+  position: relative;
   margin: 0;
   width: 100%;
 
   @media (max-device-width: 768px) {
     padding: 24px 0;
+  }
+
+  .loading {
+    position: absolute;
+    left: 50%;
+    top: 50%;
   }
 
   .result-charts-title {
