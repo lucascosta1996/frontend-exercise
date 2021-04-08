@@ -39,4 +39,12 @@ npm start
 
 When the project is up and running, it should be running in the url *localhost:/3000*. You can check by typing it in your web browser.
 
+For running unit tests, type the following in your terminal:
+
+```
+npm run test
+```
+
+Then type *a* for running all tests.
+
 Lucas Alves Costa - 4/2/2021
