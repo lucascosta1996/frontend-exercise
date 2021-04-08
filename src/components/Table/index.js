@@ -36,7 +36,7 @@ function Table({
               .map(row => (
                 <tr
                   className="table-row"
-                  key={row.id}
+                  key={row.name}
                 >
                   {Object.entries(row).map((key) => {
                     const className = `td-${key[0]}`;
