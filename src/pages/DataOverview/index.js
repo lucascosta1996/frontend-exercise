@@ -1,16 +1,45 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import DataOverviewWrapper from './styledComponents';
 import Results from '../../components/Results';
 import Terms from '../../components/Terms';
 import Table from '../../components/Table';
 import Insertions from '../../components/Insertions';
 import useGetRequests from '../../hooks/useGetRequests';
+import { patch } from '../../mockAPI/patchRequest';
+import { post } from '../../mockAPI/postRequest';
+import { seedStore, addSupportRequest, updateSupportRequest } from '../../store/actions/supportRequestsActions';
 
 function DataOverview() {
-  const { fetchData, data } = useGetRequests('/api/requests/quantity');
+  const { data } = useGetRequests('/api/requests');
+  const supportRequests = useSelector(state => state.data.supportRequests);
+  const dispatch = useDispatch();
+  const tableHeader = ['NAME', 'EMAIL', 'TIME', 'PHONE', 'CITY', 'STATUS'];
 
-  function handleDataChange() {
-    fetchData();
+  useEffect(() => {
+    if ( data && !supportRequests ) {
+      seedStore(data, dispatch);
+    }
+  }, [data, dispatch, supportRequests]);
+
+  async function handleStatusChange(item) {
+    item.status = item.status === 'send' ? 'unsend' : 'send';
+    patch('/api/requests', item)
+      .then(() => updateSupportRequest(item, dispatch));
+  }
+
+  async function handleAddClick() {
+    const randomData = {
+      name: Math.random().toString(36).substring(7),
+      email: Math.random().toString(36).substring(2, 15) + '@' + Math.random().toString(36).substring(2, 15),
+      timestamp:"2012-04-23T01:06:43.511Z",
+      phoneNumber:"215-293-5846",
+      city:"Southe Mariane",
+      status:"send",
+    };
+
+    await post('/api/requests', randomData)
+      .then(res => addSupportRequest(res.requests, dispatch))
   }
 
   return (
@@ -47,13 +76,17 @@ function DataOverview() {
           className="overview-table"
         >
           <Table
-            onChange={() => handleDataChange()}
+            header={tableHeader}
+            data={supportRequests || []}
+            handleAddClick={handleAddClick}
+            handleButtonClick={handleStatusChange}
+            tableTitle="Support Requests"
           />
         </section>
       </div>
       <footer>
         <p>
-          Showing <span>1</span> to <span>{data}</span> of {data} elements
+          Showing <span>1</span> to <span>{supportRequests?.length}</span> of {supportRequests?.length} elements
         </p>
       </footer>
     </DataOverviewWrapper>
