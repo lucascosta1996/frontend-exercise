@@ -18,6 +18,7 @@ function Sidebar() {
               activeClassName="link--active"
               className="link"
               to={item.to}
+              data-testid={item.to}
             >
               {item.svg(`${location.pathname === item.to ? '#0077FF' : '#C0C5D2'}`)}
             </NavLink>
