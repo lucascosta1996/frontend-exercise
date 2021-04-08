@@ -49,6 +49,7 @@ const DataOverviewWrapper = styled.div`
     display: flex;
     flex-wrap: no-wrap;
     justify-content: space-around;
+    min-height: 187px;
 
     @media (max-device-width: 768px) {
       flex-direction: column;

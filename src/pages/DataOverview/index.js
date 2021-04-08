@@ -1,26 +1,18 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import DataOverviewWrapper from './styledComponents';
 import Results from '../../components/Results';
 import Terms from '../../components/Terms';
 import Table from '../../components/Table';
 import Insertions from '../../components/Insertions';
-import useGetRequests from '../../hooks/useGetRequests';
 import { patch } from '../../mockAPI/patchRequest';
 import { post } from '../../mockAPI/postRequest';
-import { seedStore, addSupportRequest, updateSupportRequest } from '../../store/actions/supportRequestsActions';
+import { addSupportRequest, updateSupportRequest } from '../../store/actions/supportRequestsActions';
 
 function DataOverview() {
-  const { data } = useGetRequests('/api/requests');
   const supportRequests = useSelector(state => state.data.supportRequests);
   const dispatch = useDispatch();
   const tableHeader = ['NAME', 'EMAIL', 'TIME', 'PHONE', 'CITY', 'STATUS'];
-
-  useEffect(() => {
-    if ( data && !supportRequests ) {
-      seedStore(data, dispatch);
-    }
-  }, [data, dispatch, supportRequests]);
 
   async function handleStatusChange(item) {
     item.status = item.status === 'send' ? 'unsend' : 'send';
