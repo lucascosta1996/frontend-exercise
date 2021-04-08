@@ -41,7 +41,7 @@ function Table({
                   {Object.entries(row).map((key) => {
                     const className = `td-${key[0]}`;
 
-                    if (key[0] === 'id') return;
+                    if (key[0] === 'id' || typeof key[1] === 'object') return;
 
                     if (isDate(key[1])) {
                       return (
