@@ -9,8 +9,8 @@ function Insertions() {
     <InsertionsWrapper
       percentage={80}
     >
-      <div className="bar">
-        <div className="bar-filling" />
+      <div className="bar" data-testid="grey-bar">
+        <div className="bar-filling" data-testid="blue-bar" />
       </div>
       <p>
         <span>{data && data.insertions[0].insertionsCount}</span> insertions needed to complete
