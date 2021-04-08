@@ -1,10 +1,9 @@
 export async function post(url, body) {
-  await fetch(url, {
+  const rawResponse = await fetch(url, {
     method: 'POST',
     body: JSON.stringify(body),
-  })
-    .then(res => res.json())
-    .catch(err => {
-      return err;
-    })
+  });
+
+  const content = await rawResponse.json();
+  return content;
 };

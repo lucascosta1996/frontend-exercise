@@ -9,3 +9,7 @@ export function getDateTime(time) {
 export function capitalize(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
+
+export function isDate(date) {
+  return !isNaN(Date.parse(date));
+}
