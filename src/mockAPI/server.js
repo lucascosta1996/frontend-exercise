@@ -11,6 +11,9 @@ export function makeServer() {
     },
     seeds(server) {
       initialData.supportRequests.forEach(item => {
+        item.message = {
+          text: `This is a message from ${item.name}`
+        };
         server.create('request', item);
       });
       initialData.terms.forEach((item) => {
@@ -29,6 +32,9 @@ export function makeServer() {
       this.post('/api/requests', (schema, request) => {
         let attrs = JSON.parse(request.requestBody);
         attrs.name = `${attrs.name} ${Math.random().toFixed(2)}`
+        attrs.message = {
+          text: `This is a message from ${attrs.name}`
+        };
         return schema.requests.create(attrs);
       });
       this.patch('/api/requests/:id', (schema, request) => {

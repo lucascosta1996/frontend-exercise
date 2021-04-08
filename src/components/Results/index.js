@@ -16,7 +16,9 @@ function Results({
 
   if (loading) {
     return (
-      <span>Loading...</span>
+      <ResultsWrapper>
+        <span className="loading">Loading...</span>
+      </ResultsWrapper>
     )
   }
 
